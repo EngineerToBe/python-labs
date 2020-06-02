@@ -1,8 +1,17 @@
 #+title: Python Labs
 
-* This is still WIP
+***  This is still WIP
 
 This repository contains the resources to get started with Python.
+
 If you see any bug, typo in the content or in exercises please open a PR.
 
 The content is very basic and need no Python programming experience.
+
+*** Goal
+
+The goal of this repository is to cover foundational aspects of Python programming with an emphasis on script writing, data manipulation, and program organization.
+
+*** Requirements
+
+You need nothing more than a basic installation of Python 3.6 or newer and time to work on it.
