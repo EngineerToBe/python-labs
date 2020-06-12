@@ -16,12 +16,14 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    if len(s) <=3 and s[-3:] != 'ing':
-        return s + 'ing'
-    elif s[-3:] == 'ing':
-        return s[0:-3] + 'ly'
-    elif len(s) < 3:
-        return s
+  # +++your code here+++
+  # LAB(begin solution)
+  if len(s) >= 3:
+    if s[-3:] != 'ing':
+      s = s + 'ing'
+    else:
+      s = s + 'ly'
+  return s
 
 
 # E. not_bad
@@ -34,7 +36,8 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
   # +++your code here+++
-  return
+  if not in s and bad in s:
+      
 
 
 # F. front_back

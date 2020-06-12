@@ -21,9 +21,14 @@
 # and last chars of the string are the same.
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
-  # +++your code here+++
-  return
+  count = 0
+  for string in words:
+    if len(string) > 2 and string[0] == string[-1]
+    count = count + 1
+  return count
 
+
+print(match_ends(['aba', 'xyz', 'aa', 'x', 'bbb']))
 
 # B. front_x
 # Given a list of strings, return a list with the strings
