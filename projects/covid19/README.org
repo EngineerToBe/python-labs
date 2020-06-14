@@ -8,17 +8,31 @@ On other note " I know nothing about epidemiology."
 The data source for my tool is https://api.covid19india.org/. A bog shout out to all the developers
 for there amazinf dedication and bring us the formated data and GUI.
 
+
 * COV-IN-CLI
 
 A CLI written in Python3 to get the Covid19-India data.
 
+
 *** Prerequisite
 
-You need nothing more than a basic installation of Python 3.6 or newer and time to work on it.
+  - You need nothing more than a basic installation of Python 3.6 or newer and time to work on it.
+  - Virtualenv
+
+Follow below step to install and setup the Python Virtual Env
+
+#+begin_src
+sudo pip3 install virtualenv
+python3 -m venv covid19
+source covid19/bin/activate
+pip3 install -r requirements.txt
+#+end_src
+
 
 *** Goal
 
 An attempt to create a 1st COVID-19 India CLI.
+
 
 *** Currently tool support 5 arguments
 
