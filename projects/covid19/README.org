@@ -5,7 +5,7 @@ COVID19-India Data. Thanks to all of them.
 
 On other note " I know nothing about epidemiology."
 
-The data source for my tool is https://api.covid19india.org/. A bog shout out to all the developers
+The data source for my tool is https://api.covid19india.org/. A big shout out to all the developers
 for there amazinf dedication and bring us the formated data and GUI.
 
 
