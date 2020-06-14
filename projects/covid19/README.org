@@ -14,7 +14,11 @@ A CLI written in Python3 to get the Covid19-India data.
 
 *** Prerequisite
 
-The CLI needs Python3 installed on  your machine.
+You need nothing more than a basic installation of Python 3.6 or newer and time to work on it.
+
+*** Goal
+
+An attempt to create a 1st COVID-19 India CLI.
 
 *** Currently tool support 5 arguments
 
