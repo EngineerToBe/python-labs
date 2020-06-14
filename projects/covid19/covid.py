@@ -26,6 +26,49 @@ def states_data(statename):
         result = states_data[statename]['districtData']
         return result
 
+@main.command()
+@click.option(
+    '--acrd', '-a',
+    help='active, deceased, recovered, confirmed'
+)
+def country_total(acrd):
+    '''
+    function return the total cases across country
+    '''
+    with urllib.request.urlopen("https://api.covid19india.org/state_district_wise.json") as url:
+        states_data = json.loads(url.read())
+        count = 0
+        for state, info in states_data.items():
+            #print(info['districtData'])
+            #print(type(info['districtData']))
+            for district, info1 in info['districtData'].items():
+                count += info1.get(acrd)
+        click.echo(
+            print(f"Total {acrd} cases in India are : {count}", end=''))
+
+
+#print(country_total('active'))
+
+@main.command()
+@click.argument('statename')
+@click.option(
+    '--acrd', '-a',
+    help='active, deceased, recovered, confirmed'
+)
+def state_total(statename, acrd):
+    '''
+    function returns the total statewise cases like
+    active, recovered, deceased, confirmed
+    '''
+    state = states_data(statename)
+    #print(state)
+    count = 0
+    for district, info in state.items():
+        count += info.get(acrd)
+    click.echo(
+                print(f"Total {acrd} cases in {statename} are: {count}", end=''))
+    return count
+
 
 @main.command()
 @click.argument('statename')
@@ -50,14 +93,14 @@ def state_cases(statename):
     '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def state_wise_cases(statename, acrd):
+def district_cases(statename, acrd):
     '''
     function returns the district wise data for the key
     active, deceased, confirmed, recovered, delta.
     It takes input as a state name and the key mentioned above
     with flag -a or --acrd.
     '''
-    state = get_states_data(statename)
+    state = states_data(statename)
     for district, info in state.items():
         #print(type(info))
         click.echo(
@@ -71,7 +114,7 @@ def state_wise_cases(statename, acrd):
     '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def district_wise_cases(statename, districtname, acrd):
+def district_total(statename, districtname, acrd):
     '''
     function returns the district wise data for the key
     active, deceased, confirmed, recovered, delta.
@@ -85,6 +128,6 @@ def district_wise_cases(statename, districtname, acrd):
                 print(f"{acrd} cases in district {districtname} are: {info.get(acrd)}", end=''))
 
 
+
 if __name__ == '__main__':
     main()
- 

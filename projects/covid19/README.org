@@ -1,0 +1,50 @@
+#+title: COV-IN-CLI
+
+The Corona pandemic is on everyone's mind. There are many shiny GUI's available to visualize the
+COVID19-India Data. Thanks to all of them.
+
+On other note " I know nothing about epidemiology."
+
+The data source for my tool is https://api.covid19india.org/. A bog shout out to all the developers
+for there amazinf dedication and bring us the formated data and GUI.
+
+* COV-IN-CLI
+
+A CLI written in Python3 to get the Covid19-India data.
+
+*** Prerequisite
+
+The CLI needs Python3 installed on  your machine.
+
+*** Currently tool support 5 arguments
+
+     - country-total
+     - district-total
+     - state-total
+     - state-cases
+     - district-cases
+
+Note:
+
+     - The CLI is still WIP and the arguments may change over the period of time.
+     - This is a fun project for me.
+     - I am not Python expert
+
+** Run CLI
+
+**** country-total
+
+Accepts 1 flag at a time
+
+ - active
+ - confirmed
+ - deceased
+ - recovered
+
+#+begin_src
+python3 covid.py  country -a active
+
+# Output
+
+Total recovered cases in India are : 153679
+#+end_src
