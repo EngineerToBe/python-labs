@@ -11,23 +11,30 @@ __author__ = "Abhishek Anand Amralkar"
 @click.group()
 def main():
     """
-    Simple CLI for querying Covid19 Data for India by Abhishek Amralkar
+    CLI for querying Covid19 Data for India by Abhishek Amralkar
     """
     pass
 
 
-def get_states_data(statename):
+def states_data(statename):
+    '''
+    function queries the covid19 india api and get the state data
+    district wise
+    '''
     with urllib.request.urlopen("https://api.covid19india.org/state_district_wise.json") as url:
         states_data = json.loads(url.read())
         result = states_data[statename]['districtData']
-        #print(result)
         return result
 
 
 @main.command()
 @click.argument('statename')
-def get_state_all_cases(statename):
-    state = get_states_data(statename)
+def state_cases(statename):
+    '''
+    fucntion returns the state data district wise
+    with all the keys
+    '''
+    state = states_data(statename)
     #pprint(type(state))
     for district, info in state.items():
         print('<-****************************************************->')
@@ -40,21 +47,44 @@ def get_state_all_cases(statename):
 @main.command()
 @click.argument('statename')
 @click.option(
-    '--key', '-k',
+    '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def get_state_wise_cases_with_key(statename, key):
+def state_wise_cases(statename, acrd):
     '''
     function returns the district wise data for the key
-    active, deceased, confirmed, recovered.
+    active, deceased, confirmed, recovered, delta.
     It takes input as a state name and the key mentioned above
-    with flag -k or --key.
+    with flag -a or --acrd.
     '''
     state = get_states_data(statename)
     for district, info in state.items():
         #print(type(info))
-        print(f"{key} cases in district {district} are: {info.get(key)}")
+        click.echo(
+            print(f"{acrd} cases in district {district} are: {info.get(acrd)}", end=''))
+
+
+@main.command()
+@click.argument('statename')
+@click.argument('districtname')
+@click.option(
+    '--acrd', '-a',
+    help='active, deceased, recovered, confirmed'
+)
+def district_wise_cases(statename, districtname, acrd):
+    '''
+    function returns the district wise data for the key
+    active, deceased, confirmed, recovered, delta.
+    It takes input as a state name and the key mentioned above
+    with flag -a or --acrd.
+    '''
+    state = states_data(statename)
+    for district, info in state.items():
+        if district.lower() == districtname.lower():
+            click.echo(
+                print(f"{acrd} cases in district {districtname} are: {info.get(acrd)}", end=''))
 
 
 if __name__ == '__main__':
     main()
+ 
