@@ -61,7 +61,7 @@ def states_name():
         for state, info in states_data.items():
             state_list.append(state)
         click.echo(
-            print(state_list))
+            print(state_list[1:]))
 
 #print(states_name())
 
