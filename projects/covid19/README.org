@@ -147,3 +147,53 @@ recovered cases in district Indore are: 2906
 ❯ covid19/bin/python3 covid.py district 'Madhya Pradesh' 'Indore' -a deceased
 deceased cases in district Indore are: 174
 #+END_SRC
+
+
+*** District Cases(districts-cases)
+
+Command district-cases accepts 2 flags
+
+ - statename
+ - active / confirmed / deceased / recovered
+
+
+#+BEGIN_SRC
+covid19/bin/python3 covid.py district-cases 'Madhya Pradesh' -a active
+
+active cases in district Agar Malwa are: 2
+active cases in district Alirajpur are: 0
+active cases in district Anuppur are: 5
+active cases in district Ashoknagar are: 15
+active cases in district Balaghat are: 5
+active cases in district Barwani are: 9
+active cases in district Betul are: 4
+#+END_SRC
+
+
+*** State Cases(state-cases)
+
+Command state-cases accepts 1 flag
+
+ - statename
+
+
+#+BEGIN_SRC
+❯ covid19/bin/python3 covid.py state-cases 'Madhya Pradesh'
+
+<-****************************************************->
+Covid19 information for district Agar Malwa
+<-****************************************************->
+notes
+
+active 2
+
+confirmed 15
+
+deceased 1
+
+recovered 12
+
+delta {'confirmed': 0, 'deceased': 0, 'recovered': 0}
+
+
+#+END_SRC

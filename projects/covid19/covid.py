@@ -127,7 +127,7 @@ def state_cases(statename):
     '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def district_cases(statename, acrd):
+def districts_cases(statename, acrd):
     '''
     function returns the district wise data for the key
     active, deceased, confirmed, recovered, delta.
