@@ -34,13 +34,15 @@ pip3 install -r requirements.txt
 An attempt to create a 1st COVID-19 India CLI.
 
 
-*** Currently tool support 5 arguments
+*** Currently tool support 7 subcommands
 
      - country
      - district
      - state
      - state-cases
      - district-cases
+     - states-name
+     - districts-name
 
 Note:
 
@@ -84,9 +86,19 @@ Command state accepts 2 flags
  - deceased
  - recovered
 
-Note:- To get Indian States and Union Territories name please refer below Wiki
+Note:- To get Indian States and Union Territories names please refer below Wiki
 
 [[https://en.wikipedia.org/wiki/States_and_union_territories_of_India][Indian State and Union Territories]]
+
+or you can run a CLI itself to get Indian States and Union Territories names
+
+#+BEGIN_SRC
+covid19/bin/python3 covid.py states-name
+
+India's States and Union Territories Names are:
+<--******************************************-->
+['State Unassigned', 'Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Delhi', 'Dadra and Nagar Haveli and Daman and Diu', 'Goa', 'Gujarat', 'Himachal Pradesh', 'Haryana', 'Jharkhand', 'Jammu and Kashmir', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Maharashtra', 'Meghalaya', 'Manipur', 'Madhya Pradesh', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Puducherry', 'Rajasthan', 'Sikkim', 'Telangana', 'Tamil Nadu', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal']
+#+END_SRC
 
 #+BEGIN_SRC
 ❯ covid19/bin/python3 covid.py state 'Madhya Pradesh' -a confirmed

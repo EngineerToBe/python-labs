@@ -68,7 +68,7 @@ def states_name():
 
 @main.command()
 @click.argument('statename')
-def district_name(statename):
+def districts_name(statename):
     '''
     function return the districts name given the state name
     '''
