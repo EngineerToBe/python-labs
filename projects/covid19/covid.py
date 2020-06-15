@@ -26,12 +26,13 @@ def states_data(statename):
         result = states_data[statename]['districtData']
         return result
 
+
 @main.command()
 @click.option(
     '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def country_total(acrd):
+def country(acrd):
     '''
     function return the total cases across country
     '''
@@ -47,7 +48,40 @@ def country_total(acrd):
             print(f"Total {acrd} cases in India are : {count}", end=''))
 
 
-#print(country_total('active'))
+@main.command()
+def states_name():
+    '''
+    function return the Indian States and Union Territories Name
+    '''
+    with urllib.request.urlopen("https://api.covid19india.org/state_district_wise.json") as url:
+        states_data = json.loads(url.read())
+        print(f"India's States and Union Territories Names are:")
+        print("<--******************************************-->")
+        state_list = []
+        for state, info in states_data.items():
+            state_list.append(state)
+        click.echo(
+            print(state_list))
+
+#print(states_name())
+
+
+@main.command()
+@click.argument('statename')
+def district_name(statename):
+    '''
+    function return the districts name given the state name
+    '''
+    state = states_data(statename)
+    print(f"State {statename} districts names are:")
+    print("<-******************************************->")
+    district_list = []
+    for district, info in state.items():
+        district_list.append(district)
+    click.echo(
+        print(district_list))
+        
+
 
 @main.command()
 @click.argument('statename')
@@ -55,7 +89,7 @@ def country_total(acrd):
     '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def state_total(statename, acrd):
+def state(statename, acrd):
     '''
     function returns the total statewise cases like
     active, recovered, deceased, confirmed
@@ -114,7 +148,7 @@ def district_cases(statename, acrd):
     '--acrd', '-a',
     help='active, deceased, recovered, confirmed'
 )
-def district_total(statename, districtname, acrd):
+def district(statename, districtname, acrd):
     '''
     function returns the district wise data for the key
     active, deceased, confirmed, recovered, delta.
