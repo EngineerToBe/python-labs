@@ -54,12 +54,9 @@ Note:
 
 *** Country(country)
 
-Accepts 1 flag at a time
+Command country accepts 1 flag
 
- - active
- - confirmed
- - deceased
- - recovered
+ - active / confirmed / recovered / deceased
 
 #+begin_src
 ❯ covid19/bin/python3 covid.py country -a confirmed
@@ -75,16 +72,13 @@ Total recovered cases in India are : 172578
 Total deceased cases in India are : 9597
 #+end_src
 
+
 *** State(state)
 
 Command state accepts 2 flags
 
  - statename
-  &&
- - active
- - confirmed
- - deceased
- - recovered
+ - active / confirmed / deceased / recovered
 
 Note:- To get Indian States and Union Territories names please refer below Wiki
 
@@ -100,7 +94,6 @@ India's States and Union Territories Names are:
 ['Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Delhi', 'Dadra and Nagar Haveli and Daman and Diu', 'Goa', 'Gujarat', 'Himachal Pradesh', 'Haryana', 'Jharkhand', 'Jammu and Kashmir', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Maharashtra', 'Meghalaya', 'Manipur', 'Madhya Pradesh', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Puducherry', 'Rajasthan', 'Sikkim', 'Telangana', 'Tamil Nadu', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal']
 #+END_SRC
 
-
 #+BEGIN_SRC
 ❯ covid19/bin/python3 covid.py state 'Madhya Pradesh' -a confirmed
 Total confirmed cases in Madhya Pradesh are: 10935
@@ -113,4 +106,44 @@ Total recovered cases in Madhya Pradesh are: 7903
 
 ❯ covid19/bin/python3 covid.py state 'Madhya Pradesh' -a deceased
 Total deceased cases in Madhya Pradesh are: 465
+#+END_SRC
+
+
+*** District(district)
+
+Command district accepts 3 flags
+
+ - statename
+ - ditrictname
+ - active / confirmed / deceased / recovered
+
+Note:- To get Indian States and Union Territories names and respective districts please refer below Wiki
+
+[[https://en.wikipedia.org/wiki/List_of_districts_in_India][Indian States and Union Territories and respective districts]]
+
+or you can CLI itself to get the districts in a state
+
+#+BEGIN_SRC
+covid19/bin/python3 covid.py districts-name 'Madhya Pradesh'
+
+State Madhya Pradesh districts names are:
+<-******************************************->
+['Agar Malwa', 'Alirajpur', 'Anuppur', 'Ashoknagar', 'Balaghat', 'Barwani', 'Betul', 'Bhind', 'Bhopal', 'Burhanpur', 'Chhatarpur', 'Chhindwara', 'Damoh', 'Datia', 'Dewas', 'Dhar', 'Dindori', 'Guna', 'Gwalior', 'Harda', 'Hoshangabad', 'Indore', 'Jabalpur', 'Jhabua', 'Katni', 'Khandwa', 'Khargone', 'Mandla', 'Mandsaur', 'Morena', 'Narsinghpur', 'Neemuch', 'Niwari', 'Other Region', 'Panna', 'Raisen', 'Rajgarh', 'Ratlam', 'Rewa', 'Sagar', 'Satna', 'Sehore', 'Seoni', 'Shahdol', 'Shajapur', 'Sheopur', 'Shivpuri', 'Sidhi', 'Singrauli', 'Tikamgarh', 'Ujjain', 'Umaria', 'Vidisha']
+#+END_SRC
+
+#+BEGIN_SRC
+❯ covid19/bin/python3 covid.py district 'Madhya Pradesh' 'Indore' -a active
+active cases in district Indore are: 989
+
+❯ covid19/bin/python3 covid.py district 'Madhya Pradesh' 'Indore' -a confirmed
+confirmed cases in district Indore are: 4069
+
+❯ covid19/bin/python3 covid.py district 'Madhya Pradesh' 'Indore' -a active
+active cases in district Indore are: 989
+
+❯ covid19/bin/python3 covid.py district 'Madhya Pradesh' 'Indore' -a recovered
+recovered cases in district Indore are: 2906
+
+❯ covid19/bin/python3 covid.py district 'Madhya Pradesh' 'Indore' -a deceased
+deceased cases in district Indore are: 174
 #+END_SRC
