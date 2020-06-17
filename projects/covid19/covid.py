@@ -4,9 +4,13 @@ import urllib.request
 import json
 import click
 import pprint
+import os
 
 __author__ = "Abhishek Anand Amralkar"
 
+
+api_url = "https://api.covid19india.org/state_district_wise.json"
+operands = ['active', 'confirmed', 'deceased', 'recovered']
 
 @click.group()
 def main():
@@ -21,10 +25,14 @@ def states_data(statename):
     function queries the covid19 india api and get the state data
     district wise
     '''
-    with urllib.request.urlopen("https://api.covid19india.org/state_district_wise.json") as url:
-        states_data = json.loads(url.read())
-        result = states_data[statename]['districtData']
-        return result
+    with urllib.request.urlopen(api_url) as response:
+        if response.getcode() == 200:
+            source = response.read() 
+            states_data = json.loads(source)
+            result = states_data[statename]['districtData']
+            return result
+        else:
+            print('An error occurred while attempting to retrieve data from the API.')
 
 
 @main.command()
@@ -36,16 +44,22 @@ def country(acrd):
     '''
     function return the total cases across country
     '''
-    with urllib.request.urlopen("https://api.covid19india.org/state_district_wise.json") as url:
-        states_data = json.loads(url.read())
-        count = 0
-        for state, info in states_data.items():
-            #print(info['districtData'])
-            #print(type(info['districtData']))
-            for district, info1 in info['districtData'].items():
-                count += info1.get(acrd)
-        click.echo(
-            print(f"Total {acrd} cases in India are : {count}", end=''))
+    with urllib.request.urlopen(api_url) as response:
+        if response.getcode() == 200:
+            source = response.read()
+            states_data = json.loads(source)
+            count = 0
+            try:
+                for state, info in states_data.items():
+                    for district, info1 in info['districtData'].items():
+                        count += info1.get(acrd)
+                click.echo(
+                    print(f"Total {acrd} cases in India are : {count}", end=''))
+            except Exception as e:
+                click.echo(print(f"Unsupported Operand {acrd}. Supported Operands are: \n{os.linesep.join(operands)}"))
+        else:
+            click.echo(
+                print('An error occurred while attempting to retrieve data from the API.'))
 
 
 @main.command()
